@@ -46,8 +46,10 @@ def submit_form():
 @app.route('/view')
 def view_registrations():
     # TODO: Read data from registrations.json and send to template (worksheet Part 2)
-
-    return render_template('view.html', registrations=[])
+    if os.path.exists('registrations.json'):
+        with open('registrations.json', 'r') as file:
+            data = json.load(file)
+    return render_template('view.html', registrations=data)
 
 if __name__ == '__main__':
     app.run(debug=True)
