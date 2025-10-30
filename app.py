@@ -49,6 +49,17 @@ def view_registrations():
     if os.path.exists('registrations.json'):
         with open('registrations.json', 'r') as file:
             data = json.load(file)
+    else:
+        data = []
+    return render_template('view.html', registrations=data)
+
+@app.route('/delete')
+def delete_registration():
+    if os.path.exists('registrations.json'):
+        os.remove('registrations.json')
+        data=[]
+
+    flash('Registrations deleted successfully!')
     return render_template('view.html', registrations=data)
 
 if __name__ == '__main__':
