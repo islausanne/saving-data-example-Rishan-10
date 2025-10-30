@@ -2,8 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import json
 import os
 
-# Testing!!!!!
-
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # Needed for flash messages
 
@@ -27,6 +25,21 @@ def submit_form():
     # TODO: Save form data to a JSON file (worksheet Part 1)
 
     flash('Registration submitted successfully!')
+
+    # Check if file exists
+    if os.path.exists('registrations.json'):
+        with open('registrations.json', 'r') as file:
+            data = json.load(file)
+    else:
+        data = []
+
+    # Add the new registration
+    data.append({'name': name, 'country': country, 'age': age})
+
+    # Save all registrations back to the file
+    with open('registrations.json', 'w') as file:
+        json.dump(data, file, indent=2)
+
     return redirect(url_for('index'))
 
 # Display stored registrations (students will add JSON reading code here)
