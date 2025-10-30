@@ -20,7 +20,8 @@ def register():
 def submit_form():
     name = request.form['name']
     country = request.form['country']
-    age = request.form['age']
+    date_of_birth = request.form['date_of_birth']
+    email = request.form['email']
 
     # TODO: Save form data to a JSON file (worksheet Part 1)
 
@@ -34,7 +35,7 @@ def submit_form():
         data = []
 
     # Add the new registration
-    data.append({'name': name, 'country': country, 'age': age})
+    data.append({'name': name, 'country': country, 'date_of_birth': date_of_birth, 'email': email})
 
     # Save all registrations back to the file
     with open('registrations.json', 'w') as file:

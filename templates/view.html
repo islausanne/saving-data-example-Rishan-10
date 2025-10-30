@@ -6,17 +6,19 @@
     <tr>
       <th>Name</th>
       <th>Country</th>
-      <th>Age</th>
+      <th>Date of Birth</th>
+      <th>Email</th>
     </tr>
     {% for person in registrations %}
       <tr>
         <td>{{ person.name }}</td>
         <td>{{ person.country }}</td>
-        <td>{{ person.age }}</td>
+        <td>{{ person.date_of_birth }}</td>
+        <td>{{ person.email }}</td>
       </tr>
     {% endfor %}
   </table><br>
-<a href="/delete"><button>Delete all the data</button></a>
+  <a href="/delete"><button>Delete all the data</button></a>
 {% else %}
   <p>No registrations found yet.</p>
 {% endif %}
